@@ -1,6 +1,10 @@
 <script setup>
-import { ref, onMounted } from "vue";
+
+import { ref, onMounted, watch } from "vue";
+
 import { Bar } from "vue-chartjs";
+
+
 import {
   Chart as ChartJS,
   Title,
@@ -10,71 +14,445 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
+
+
 import api from "../services/api";
 
+
+
 ChartJS.register(
+
   Title,
   Tooltip,
   Legend,
   BarElement,
   CategoryScale,
   LinearScale
+
 );
 
-const chartData = ref({
-  labels: [],
-  datasets: [
-    {
-      label: "ค่าใช้จ่าย (บาท)",
-      data: [],
-    },
-  ],
+
+
+// รับ Filter จาก Dashboard
+
+const props = defineProps({
+
+  filter: {
+
+    type: Object,
+
+    default: () => ({
+
+      building_name: "",
+      month: ""
+
+    })
+
+  }
+
 });
 
+
+
+const loading = ref(true);
+
+const error = ref(null);
+
+
+
+const chartData = ref({
+
+  labels: [],
+
+  datasets: [
+
+    {
+
+      label: "ค่าใช้จ่าย (บาท)",
+
+      data: [],
+
+      backgroundColor: "#DC2626",
+
+      borderWidth: 1
+
+    }
+
+  ]
+
+});
+
+
+
+
+
 const chartOptions = {
+
+
   responsive: true,
+
+
+  maintainAspectRatio: false,
+
+
   plugins: {
+
+
     legend: {
-      display: true,
+
+      display: true
+
     },
-  },
-};
 
-async function loadCostChart() {
-  try {
-    const res = await api.get("/dashboard/compare");
 
-    const grouped = {};
+    tooltip: {
 
-    res.data.forEach((item) => {
-      if (!grouped[item.month]) {
-        grouped[item.month] = 0;
+
+      callbacks: {
+
+
+        label(context) {
+
+
+          return (
+
+            "ค่าใช้จ่าย: " +
+
+            Number(context.raw)
+
+              .toLocaleString(
+
+                undefined,
+
+                {
+
+                  minimumFractionDigits: 2
+
+                }
+
+              )
+
+            +
+
+            " บาท"
+
+          );
+
+
+        }
+
+
       }
 
-      grouped[item.month] += Number(item.total_cost);
+
+    }
+
+
+  },
+
+
+
+  scales: {
+
+
+    y: {
+
+
+      beginAtZero: true,
+
+
+      ticks: {
+
+
+        callback(value) {
+
+
+          return Number(value)
+
+            .toLocaleString();
+
+
+        }
+
+
+      }
+
+
+    }
+
+
+  }
+
+
+};
+
+
+
+
+
+
+
+async function loadCost(){
+
+
+  loading.value = true;
+
+
+  try {
+
+
+
+    const res = await api.get(
+
+      "/dashboard/compare",
+
+      {
+
+        params: {
+
+
+          month:
+
+            props.filter.month || undefined,
+
+
+
+          building_name:
+
+            props.filter.building_name || undefined
+
+
+        }
+
+      }
+
+    );
+
+
+
+    console.log(
+
+      "Cost Data:",
+
+      res.data
+
+    );
+
+
+
+    const monthly = {};
+
+
+
+    res.data.forEach(item => {
+
+
+
+      const month = item.month;
+
+
+
+      if(!monthly[month]){
+
+
+        monthly[month] = 0;
+
+
+      }
+
+
+
+      monthly[month] +=
+
+        Number(
+
+          item.total_cost || 0
+
+        );
+
+
+
     });
 
+
+
+
+
     chartData.value = {
-      labels: Object.keys(grouped),
+
+
+
+      labels:
+
+        Object.keys(monthly),
+
+
 
       datasets: [
+
+
         {
-          label: "ค่าใช้จ่าย (บาท)",
-          data: Object.values(grouped),
-        },
-      ],
+
+
+          label:
+
+            "ค่าใช้จ่าย (บาท)",
+
+
+
+          data:
+
+            Object.values(monthly),
+
+
+
+          backgroundColor:
+
+            "#DC2626",
+
+
+
+          borderWidth:1
+
+
+        }
+
+
+      ]
+
+
+
     };
-  } catch (err) {
-    console.error("Cost Chart Error:", err);
+
+
+
+
   }
+
+
+  catch(err){
+
+
+
+    console.error(
+
+      "Cost Chart Error:",
+
+      err
+
+    );
+
+
+
+    error.value =
+
+      "โหลดข้อมูลค่าใช้จ่ายรายเดือนไม่ได้";
+
+
+  }
+
+
+  finally{
+
+
+    loading.value = false;
+
+
+  }
+
+
 }
 
-onMounted(loadCostChart);
+
+
+
+
+// โหลดครั้งแรก
+
+onMounted(loadCost);
+
+
+
+// โหลดใหม่เมื่อ Filter เปลี่ยน
+
+watch(
+
+  () => props.filter,
+
+  () => {
+
+    loadCost();
+
+  },
+
+  {
+
+    deep:true
+
+  }
+
+);
+
+
+
 </script>
 
+
+
+
+
 <template>
+
+
+<div class="h-80">
+
+
+
+  <div
+
+    v-if="loading"
+
+    class="flex justify-center items-center h-full"
+
+  >
+
+    กำลังโหลดกราฟ...
+
+  </div>
+
+
+
+
+
+  <div
+
+    v-else-if="error"
+
+    class="text-red-600"
+
+  >
+
+    {{ error }}
+
+  </div>
+
+
+
+
+
   <Bar
+
+    v-else
+
     :data="chartData"
+
     :options="chartOptions"
+
   />
+
+
+
+</div>
+
+
 </template>
