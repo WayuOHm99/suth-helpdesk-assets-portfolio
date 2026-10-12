@@ -2,6 +2,8 @@
 
 Issue และ spec ของ repo นี้อยู่ใน GitHub Issues ใช้ `gh` CLI สำหรับทุกการทำงาน
 
+งานใหม่ใช้ `WayuOHm99/suth-helpdesk-assets-portfolio` ตรวจ `git remote -v` ก่อนเขียน และระบุ `--repo WayuOHm99/suth-helpdesk-assets-portfolio` เมื่อคำสั่งไม่ได้รันในสำเนานี้ ลิงก์ `saritrungj/suth-helpdesk-assets` ที่สืบทอดมาใช้สำหรับอ่านหลักฐานเดิมเท่านั้น
+
 ## ข้อตกลง
 
 - **สร้าง issue**: `gh issue create --title "..." --body "..."` ใช้ heredoc ถ้า body หลายบรรทัด
@@ -11,7 +13,7 @@ Issue และ spec ของ repo นี้อยู่ใน GitHub Issues �
 - **ติด/ถอด label**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
 - **ปิด**: `gh issue close <number> --comment "..."`
 
-`gh` เดา repo จาก `git remote -v` เองเมื่อรันในเครื่องที่ clone ไว้แล้ว (repo นี้คือ `saritrungj/suth-helpdesk-assets`)
+`gh` เดา repo จาก `git remote -v` เองเมื่อรันในเครื่องที่ clone ไว้แล้ว (repo นี้คือ `WayuOHm99/suth-helpdesk-assets-portfolio`)
 
 ## PR เป็นช่องทาง triage ไหม
 

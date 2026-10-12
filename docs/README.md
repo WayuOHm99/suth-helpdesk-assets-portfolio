@@ -4,6 +4,7 @@
 
 | ถ้าคุณกำลัง… | ไปที่ |
 |---|---|
+| ประเมินผลงานฝึกงานหรือเตรียมสัมภาษณ์ | [`portfolio/README.md`](portfolio/README.md) |
 | อยากเข้าใจว่าทำไมระบบเป็นแบบนี้ | [`explanation/`](explanation/) |
 | มีงานเฉพาะหน้าต้องทำให้เสร็จ | [`how-to/`](how-to/) |
 | ต้องเปิดหาค่า ชื่อคอลัมน์ หรือ endpoint | [`reference/`](reference/) |

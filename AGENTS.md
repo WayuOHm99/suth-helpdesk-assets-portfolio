@@ -2,6 +2,8 @@
 
 ระบบ Hospital IT asset management — Express/MySQL API, Vue/Vite client, SQL scripts, เอกสารปฏิบัติการ เริ่มที่ `docs/README.md` (บอกว่าหาอะไรที่ไหน)
 
+สำเนานี้เป็น Portfolio ส่วนตัว: งานใหม่ใช้ tracker ของ `WayuOHm99/suth-helpdesk-assets-portfolio` ตาม `docs/agents/issue-tracker.md`; ลิงก์ repo ต้นทางในเอกสาร/ADR เป็นหลักฐานประวัติ ไม่ใช่ปลายทางสำหรับเขียน Issue หรือ push
+
 ## อ่านก่อนแก้ (trigger → ไฟล์)
 
 - เขียนหรือรีวิวโค้ดใน `apps/api` หรือ `apps/web` → [`docs/reference/coding-standards.md`](docs/reference/coding-standards.md) (รูปแบบ ชั้นพื้นฐาน API บทบาทโฟลเดอร์เว็บ ห้ามใช้สี Tailwind ดิบ ชื่อไฟล์)
@@ -53,6 +55,6 @@ npm workspace เดียว (`npm install` ที่รากครั้ง�
 
 ## Agent docs
 
-- Issue tracker: GitHub Issues (`saritrungj/suth-helpdesk-assets`) ผ่าน `gh` — `docs/agents/issue-tracker.md`; label: `docs/agents/triage-labels.md`; domain docs: `docs/agents/domain.md`
+- Issue tracker: GitHub Issues (`WayuOHm99/suth-helpdesk-assets-portfolio`) ผ่าน `gh` — `docs/agents/issue-tracker.md`; label: `docs/agents/triage-labels.md`; domain docs: `docs/agents/domain.md`
 - แก้บั๊ก รีวิว diff หรือเตรียมส่งมอบ → [`docs/agents/review-workflow.md`](docs/agents/review-workflow.md) (reproduction แดงก่อน, ตรวจสามมิติ, ปิดทุก finding ด้วยหลักฐาน)
 - subagent สำหรับรันชุดตรวจ/รีวิว security และกฎโดเมน (session หลักเป็นผู้เขียนโค้ดคนเดียว) → [`docs/agents/subagents.md`](docs/agents/subagents.md)
