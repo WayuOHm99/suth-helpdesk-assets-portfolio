@@ -68,7 +68,8 @@
 
 ## ข้อความสำหรับ CV
 
-**Full-stack Developer Intern · Hospital IT Asset Management**  
+**Full-stack Developer Intern · Hospital IT Asset Management**
+
 **8 June–12 October 2026**
 
 - Owned end-to-end development of a hospital IT asset management internship project under mentor supervision, using Vue 3, Express and MySQL.
@@ -88,6 +89,8 @@
 ## ภาพตัวอย่างจากข้อมูลจำลอง
 
 ภาพที่คัดเลือกสำหรับ Portfolio ถ่ายวันที่ 12 ตุลาคม 2026 ด้วย Chromium ที่ 1440 × 1000 จากแอปต้นทางซึ่งมีไฟล์ apps และ packages ตรงกับสำเนานี้ ข้อมูลทั้งหมดมาจาก asset/prototype/comparison fixtures ในชุด E2E โดย intercept API ในเบราว์เซอร์และปิดคำขอภายนอกที่เหลือ ไม่เชื่อมต่อหรือบันทึกฐานข้อมูลจริง
+
+ตัวเลข fixture สำหรับภาพค่าใช้จ่ายปรับให้สอดคล้องกับกฎหักจำนวนหน้าและการปัดเงินใน [ADR-0017](../decisions/0017-two-percent-page-deduction.md) และ [ADR-0022](../decisions/0022-round-at-invoice-line-and-allocate.md) โดยปรับเฉพาะข้อมูลจำลองของการถ่ายภาพ
 
 ภาพเหล่านี้เป็นภาพอธิบายผลิตภัณฑ์สำหรับ Portfolio ไม่ใช่ screenshot baseline หรือหลักฐานว่าทุก workflow ผ่านการทดสอบในรอบนี้
 
