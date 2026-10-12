@@ -10,6 +10,12 @@ A web application for hospital IT teams to manage printer assets, contracts, mon
 
 รับผิดชอบการพัฒนาระบบครบวงจรภายใต้การดูแลของพี่เลี้ยง รายละเอียดผลงานและหลักฐานอยู่ใน [กรณีศึกษาจากงานจริง](docs/portfolio/README.md)
 
+## Product preview
+
+![Analytics dashboard with synthetic test data](docs/portfolio/images/dashboard.png)
+
+*Captured on 12 October 2026 using deterministic browser fixtures. All values shown are synthetic test data. See the [asset registry and expense previews](docs/portfolio/README.md#ภาพตัวอย่างจากข้อมูลจำลอง).*
+
 ## Engineering highlights
 
 | Work | Engineering focus | Evidence |
@@ -40,7 +46,7 @@ Requirements: Node.js 20+, npm and MySQL 8.4 or Docker Desktop. Follow the [deve
     # In a second terminal:
     npm run dev:web
 
-Use synthetic data for demonstrations. This repository contains no working production environment or database backup. Screenshots and a hosted demo have not been prepared for this copy.
+Use synthetic data for demonstrations. This repository contains no working production environment or database backup. The screenshots illustrate the UI with browser fixtures; a hosted demo has not been prepared.
 
 ## Documentation and continued development
 
@@ -56,4 +62,4 @@ Deployment records inherited from the source describe that source system, rather
 
 This is an independent personal portfolio copy of [saritrungj/suth-helpdesk-assets](https://github.com/saritrungj/suth-helpdesk-assets), prepared on 12 October 2026. Original contributor names, documentation and the [Apache License 2.0 text](LICENSE) are retained.
 
-Historical backend/.env and the raw docs/meter-import-source.xlsx were removed from this copy's Git history before upload. Original commit IDs can therefore differ; the linked source PRs remain the references for historical work. The original local archive is kept separately and is not uploaded here.
+Historical backend/.env, uploaded files, spreadsheets under docs and committed dependency folders were removed from this copy's Git history before upload. Original commit IDs can therefore differ; the linked source PRs remain the references for historical work. The original local archive is kept separately and is not uploaded here.
